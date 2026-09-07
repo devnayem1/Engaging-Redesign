@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>teamsoffshore — Your Global Partner in Offshore Staffing</title>
+<meta name="description" content="Offshore staffing in the Philippines. Dedicated Virtual Assistants, scaling offshore teams and Tech Dev talent — built to help your business grow without the growing pains.">
+
+<!-- Fonts: Manrope for display/headline personality, Inter for body workhorse legibility -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  /* Universal image fallback — guarantees no broken images ever render */
+  function imgFallback(el, label){
+    el.onerror = null;
+    el.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">'+
+      '<rect width="100%" height="100%" fill="#0B2E33"/>'+
+      '<text x="50%" y="50%" fill="#F5F3EC" font-family="sans-serif" font-size="28" text-anchor="middle" dominant-baseline="middle">'+label+'</text>'+
+      '</svg>'
+    );
+  }
+</script>
+
+<style>
+  /* ============================================================
+     TOKENS
+     ============================================================ */
+  :root{
+    --harbor:#0B2E33;      /* primary deep navy-teal — header, footer, hero */
+    --harbor-2:#123B41;    /* slightly lighter harbor for gradients/panels */
+    --tide:#1C6B67;        /* secondary teal — section accents, links */
+    --sunrise:#E8A23A;     /* warm gold — primary CTA, highlight */
+    --sunrise-dark:#C77F1F;
+    --mist:#F3F5F2;        /* soft cool-warm off white — section backgrounds */
+    --paper:#FFFFFF;
+    --ink:#12201F;         /* body text */
+    --ink-soft:#4B5A58;    /* secondary text */
+    --line:#DDE3E0;
+
+    --font-head:'Manrope', sans-serif;
+    --font-body:'Inter', sans-serif;
+
+    --container:1200px;
+    --radius:14px;
+    --shadow:0 20px 40px -22px rgba(11,46,51,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{font-family:var(--font-head);margin:0 0 .5em;line-height:1.15;color:var(--harbor);}
+  p{margin:0 0 1em;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;cursor:pointer;}
+  .wrap{max-width:var(--container);margin:0 auto;padding:0 24px;}
+  section{padding:96px 0;}
+  .eyebrow-none{ } /* deliberately not using tracked all-caps eyebrows anywhere */
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline:3px solid var(--sunrise);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ============================================================
+     BUTTONS
+     ============================================================ */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;border-radius:10px;
+    font-weight:700;font-size:15px;border:2px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+  }
+  .btn-primary{
+    background:var(--sunrise);color:var(--harbor);
+  }
+  .btn-primary:hover{background:var(--sunrise-dark);transform:translateY(-2px);box-shadow:0 14px 24px -10px rgba(232,162,58,.55);}
+  .btn-ghost{
+    background:transparent;border-color:rgba(255,255,255,.5);color:#fff;
+  }
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+  .btn-outline-dark{
+    background:transparent;border-color:var(--harbor);color:var(--harbor);
+  }
+  .btn-outline-dark:hover{background:var(--harbor);color:#fff;}
+  .btn-block{width:100%;justify-content:center;}
+
+  /* ============================================================
+     HEADER
+     ============================================================ */
+  header{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(11,46,51,0.94);
+    backdrop-filter:blur(6px);
+    transition:box-shadow .25s ease;
+  }
+  header.scrolled{box-shadow:0 8px 24px -16px rgba(0,0,0,.5);}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0;}
+  .brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:var(--font-head);font-weight:800;font-size:20px;}
+  .brand img{height:34px;width:auto;border-radius:6px;background:#fff;padding:3px;}
+  nav.primary-nav{display:flex;align-items:center;gap:2px;}
+  nav.primary-nav a{
+    color:#DCE7E5;font-weight:600;font-size:14.5px;padding:10px 14px;border-radius:8px;
+    position:relative;transition:color .2s ease, background .2s ease;
+  }
+  nav.primary-nav a:hover{color:#fff;background:rgba(255,255,255,.08);}
+  nav.primary-nav a.active{color:#fff;}
+  nav.primary-nav a.active::after{
+    content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;background:var(--sunrise);border-radius:2px;
+  }
+  .header-actions{display:flex;align-items:center;gap:14px;}
+  .hamburger{display:none;background:none;border:none;padding:8px;color:#fff;}
+  .hamburger span{display:block;width:24px;height:2px;background:#fff;margin:5px 0;border-radius:2px;}
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero{
+    background:radial-gradient(1200px 600px at 85% -10%, rgba(28,107,103,.55), transparent 60%), linear-gradient(180deg, var(--harbor) 0%, var(--harbor-2) 100%);
+    color:#fff;padding:88px 0 0;position:relative;overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+    padding-bottom:72px;
+  }
+  .hero-kicker{color:var(--sunrise);font-weight:700;font-size:15px;margin-bottom:14px;}
+  .hero h1{color:#fff;font-size:clamp(34px,4.6vw,54px);font-weight:800;letter-spacing:-0.01em;}
+  .hero p.lead{color:#CBD9D7;font-size:18px;max-width:52ch;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+  .hero-stats{display:flex;gap:32px;margin-top:44px;flex-wrap:wrap;}
+  .hero-stats .stat b{display:block;font-family:var(--font-head);font-size:28px;color:#fff;}
+  .hero-stats .stat span{color:#9FB6B3;font-size:13.5px;}
+
+  .hero-collage{position:relative;height:460px;}
+  .hero-collage img{
+    position:absolute;border-radius:16px;object-fit:cover;box-shadow:var(--shadow);border:4px solid rgba(255,255,255,.08);
+  }
+  .hc-1{width:60%;height:320px;top:0;right:0;}
+  .hc-2{width:44%;height:220px;left:0;bottom:0;}
+  .hc-badge{
+    position:absolute;left:6%;top:38%;background:#fff;color:var(--harbor);
+    border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);font-family:var(--font-head);
+    max-width:190px;
+  }
+  .hc-badge b{display:block;font-size:22px;}
+  .hc-badge span{font-size:12.5px;color:var(--ink-soft);}
+
+  .wave-divider{display:block;width:100%;height:64px;margin-top:-2px;}
+
+  /* ============================================================
+     TRUST STRIP
+     ============================================================ */
+  .trust{background:var(--mist);padding:28px 0;border-bottom:1px solid var(--line);}
+  .trust-row{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+  .trust-row .label{font-size:13.5px;color:var(--ink-soft);font-weight:600;white-space:nowrap;}
+  .trust-logos{display:flex;align-items:center;gap:36px;flex-wrap:wrap;}
+  .trust-logos img{height:30px;width:auto;filter:grayscale(1);opacity:.75;}
+
+  /* ============================================================
+     ABOUT
+     ============================================================ */
+  .about{background:var(--paper);}
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;}
+  .about-media{position:relative;}
+  .about-media img{border-radius:var(--radius);box-shadow:var(--shadow);}
+  .about h2{font-size:clamp(28px,3.4vw,40px);}
+  .about p{color:var(--ink-soft);font-size:16.5px;max-width:56ch;}
+  .about-founded{
+    display:inline-flex;gap:10px;align-items:center;background:var(--mist);
+    padding:8px 14px;border-radius:100px;font-weight:700;font-size:13.5px;color:var(--tide);margin-bottom:18px;
+  }
+  .about-founded .dot{width:7px;height:7px;border-radius:50%;background:var(--sunrise);}
+
+  /* ============================================================
+     SERVICES
+     ============================================================ */
+  .services{background:var(--mist);}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px);}
+  .section-head p{color:var(--ink-soft);font-size:17px;}
+
+  .service-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+    padding:44px 0;border-top:1px solid var(--line);
+  }
+  .service-row:last-child{border-bottom:1px solid var(--line);}
+  .service-row.reverse .service-media{order:2;}
+  .service-media img{border-radius:var(--radius);box-shadow:var(--shadow);aspect-ratio:4/3;object-fit:cover;}
+  .service-num{font-family:var(--font-head);font-weight:800;color:var(--sunrise);font-size:14px;margin-bottom:10px;}
+  .service-text h3{font-size:26px;}
+  .service-text p{color:var(--ink-soft);}
+  .service-tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px;}
+  .service-tags span{background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:100px;font-size:13px;color:var(--ink-soft);}
+  .service-link{font-weight:700;color:var(--tide);display:inline-flex;align-items:center;gap:6px;}
+  .service-link:hover{color:var(--harbor);}
+
+  /* ============================================================
+     PROCESS (real numbered sequence — 8 step recruitment flow)
+     ============================================================ */
+  .process{background:var(--harbor);color:#fff;}
+  .process .section-head h2, .process .section-head p{color:#fff;}
+  .process .section-head p{color:#B9CBC9;}
+  .process-list{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,.12);border-radius:var(--radius);overflow:hidden;}
+  .process-step{background:var(--harbor-2);padding:28px 24px;min-height:190px;}
+  .process-step b{display:block;font-family:var(--font-head);color:var(--sunrise);font-size:22px;margin-bottom:10px;}
+  .process-step p{color:#CBD9D7;font-size:14.5px;margin:0;}
+
+  /* ============================================================
+     VALUES
+     ============================================================ */
+  .values{background:var(--paper);}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .value-cell{background:#fff;padding:36px 32px;}
+  .value-cell h3{font-size:19px;color:var(--tide);}
+  .value-cell p{color:var(--ink-soft);font-size:15px;margin:0;}
+
+  /* ============================================================
+     WHY PHILIPPINES
+     ============================================================ */
+  .why{background:var(--tide);color:#fff;}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px;}
+  .why h2{color:#fff;}
+  .why-head{max-width:640px;margin-bottom:48px;}
+  .why-head p{color:#DCEFEC;}
+  .why-item b{display:block;font-family:var(--font-head);font-size:19px;margin-bottom:8px;}
+  .why-item p{color:#DCEFEC;font-size:15px;}
+
+  /* ============================================================
+     CTA BANNER
+     ============================================================ */
+  .cta-banner{
+    background:linear-gradient(120deg, var(--sunrise), var(--sunrise-dark));
+    color:var(--harbor);
+  }
+  .cta-banner .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:56px 24px;}
+  .cta-banner h2{color:var(--harbor);font-size:clamp(24px,3vw,32px);margin:0;}
+  .cta-banner p{margin:6px 0 0;color:#3B2A0E;}
+
+  /* ============================================================
+     CONTACT
+     ============================================================ */
+  .contact{background:var(--mist);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .contact-info h2{font-size:clamp(28px,3.4vw,38px);}
+  .contact-info p{color:var(--ink-soft);}
+  .contact-detail{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
+  .contact-detail .ic{
+    width:40px;height:40px;border-radius:10px;background:var(--harbor);color:#fff;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;
+  }
+  .contact-detail b{display:block;font-size:14.5px;}
+  .contact-detail span, .contact-detail a{color:var(--ink-soft);font-size:14.5px;}
+  .map-frame{margin-top:26px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);}
+  .map-frame iframe{width:100%;height:230px;border:0;display:block;}
+
+  .contact-form{
+    background:#fff;padding:36px;border-radius:var(--radius);box-shadow:var(--shadow);
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:13.5px;font-weight:700;margin-bottom:6px;color:var(--harbor);}
+  .field input, .field select, .field textarea{
+    width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:9px;
+    font-family:inherit;font-size:14.5px;color:var(--ink);background:#fff;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    border-color:var(--tide);box-shadow:0 0 0 3px rgba(28,107,103,.15);outline:none;
+  }
+  .field textarea{resize:vertical;min-height:110px;}
+  .form-note{font-size:12.5px;color:var(--ink-soft);margin-top:12px;text-align:center;}
+  #formSuccess{
+    display:none;background:#EAF6EE;border:1px solid #BEE3C8;color:#1E5E33;
+    padding:14px 16px;border-radius:9px;font-size:14px;font-weight:600;margin-bottom:16px;
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer{background:var(--harbor);color:#CBD9D7;padding:72px 0 28px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.12);}
+  .footer-brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:var(--font-head);font-weight:800;font-size:19px;margin-bottom:14px;}
+  .footer-brand img{height:30px;background:#fff;border-radius:6px;padding:3px;}
+  footer h4{color:#fff;font-size:14.5px;margin-bottom:16px;font-family:var(--font-head);}
+  footer ul li{margin-bottom:10px;}
+  footer ul li a{font-size:14.5px;color:#B9CBC9;transition:color .2s ease;}
+  footer ul li a:hover{color:var(--sunrise);}
+  .footer-socials{display:flex;gap:10px;margin-top:18px;}
+  .footer-socials a{
+    width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;
+    transition:background .2s ease;
+  }
+  .footer-socials a:hover{background:var(--sunrise);color:var(--harbor);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;flex-wrap:wrap;gap:12px;font-size:13px;color:#8FA6A3;}
+  .footer-bottom a{color:#8FA6A3;}
+  .footer-bottom a:hover{color:#fff;}
+
+  .back-to-top{
+    position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;
+    background:var(--sunrise);color:var(--harbor);border:none;display:flex;align-items:center;justify-content:center;
+    font-size:18px;box-shadow:0 12px 24px -10px rgba(0,0,0,.4);opacity:0;pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;z-index:900;
+  }
+  .back-to-top.show{opacity:1;pointer-events:auto;}
+  .back-to-top:hover{transform:translateY(-3px);}
+
+  /* ============================================================
+     RESPONSIVE — TABLET (<=1024px)
+     ============================================================ */
+  @media (max-width:1024px){
+    section{padding:72px 0;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-collage{height:340px;margin-top:12px;}
+    .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .about-media{order:-1;}
+    .process-list{grid-template-columns:repeat(2,1fr);}
+    .values-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:1fr 1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    nav.primary-nav{display:none;}
+  }
+
+  /* ============================================================
+     RESPONSIVE — MOBILE (<=640px)
+     ============================================================ */
+  @media (max-width:640px){
+    section{padding:56px 0;}
+    .hamburger{display:block;}
+    .nav-row{position:relative;}
+    nav.primary-nav{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--harbor-2);flex-direction:column;align-items:stretch;
+      padding:10px;border-radius:0 0 12px 12px;box-shadow:0 16px 30px -10px rgba(0,0,0,.5);
+    }
+    nav.primary-nav.open{display:flex;}
+    nav.primary-nav a{padding:12px 14px;}
+    .header-actions .btn-primary{padding:10px 16px;font-size:13.5px;}
+    .hero-ctas{flex-direction:column;align-items:stretch;}
+    .hero-ctas .btn{justify-content:center;}
+    .hero-stats{gap:22px;}
+    .hero-collage{height:auto;}
+    .hero-collage img{position:static;width:100%;height:200px;margin-bottom:12px;}
+    .hc-badge{position:static;margin:10px 0 0;max-width:none;}
+    .service-row{grid-template-columns:1fr;gap:24px;}
+    .service-row.reverse .service-media{order:0;}
+    .process-list{grid-template-columns:1fr;}
+    .values-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .trust-row{flex-direction:column;align-items:flex-start;}
+    .form-row{grid-template-columns:1fr;}
+    .contact-form{padding:24px;}
+    .footer-grid{grid-template-columns:1fr;gap:32px;}
+    .cta-banner .wrap{flex-direction:column;align-items:flex-start;text-align:left;}
+    .back-to-top{width:42px;height:42px;bottom:18px;right:18px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header id="siteHeader">
+  <div class="wrap nav-row">
+    <a href="#top" class="brand">
+      <img src="https://static.wixstatic.com/media/2f7214_323d9d8d6c2d468e805da786f75d517f~mv2.png" alt="teamsoffshore logo" onerror="imgFallback(this,'teamsoffshore')">
+    </a>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+      <a href="#top" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#why">Why the Philippines</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-primary" href="https://calendly.com/steve-murray2024" target="_blank" rel="noopener">Book a call</a>
+      <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-kicker">In partnership with teamdev360</div>
+      <h1>Offshore staffing that scales with you, not against you</h1>
+      <p class="lead">From dedicated Virtual Assistants to full offshore teams and Tech Dev talent — we handle the day-to-day so you can focus on the big picture, backed by 200+ professionals across the Philippines.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://calendly.com/steve-murray2024" target="_blank" rel="noopener">Book a free consultation</a>
+        <a class="btn btn-ghost" href="#services">Explore our services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>200+</b><span>Skilled professionals</span></div>
+        <div class="stat"><b>2019</b><span>Founded</span></div>
+        <div class="stat"><b>3</b><span>Regions served — EMEA, USA, APAC</span></div>
+      </div>
+    </div>
+    <div class="hero-collage">
+      <img class="hc-1" src="https://static.wixstatic.com/media/2f7214_eabb8e254f004f8d9949f1b9b2f8f7e2~mv2.jpg" alt="Member of the teamsoffshore team at work" onerror="imgFallback(this,'teamsoffshore')">
+      <img class="hc-2" src="https://static.wixstatic.com/media/2f7214_b0039d046ff64e8788744a98c05bbfdf~mv2.jpg" alt="Offshore team collaborating" onerror="imgFallback(this,'teamsoffshore')">
+      <div class="hc-badge"><b>8-step</b><span>vetting process for every placement</span></div>
+    </div>
+  </div>
+  <svg class="wave-divider" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,32 L1440,64 L0,64 Z" fill="#F3F5F2"></path>
+  </svg>
+</section>
+
+<!-- ============================================================
+     TRUST STRIP
+     ============================================================ -->
+<div class="trust">
+  <div class="wrap trust-row">
+    <span class="label">Trusted by growing businesses across</span>
+    <div class="trust-logos">
+      <span style="font-weight:700;color:var(--ink-soft);">🇬🇧 United Kingdom</span>
+      <span style="font-weight:700;color:var(--ink-soft);">🇺🇸 United States</span>
+      <span style="font-weight:700;color:var(--ink-soft);">🇦🇺 Australia</span>
+      <span style="font-weight:700;color:var(--ink-soft);">🇵🇭 Philippines</span>
+    </div>
+    <img src="https://static.wixstatic.com/media/2f7214_d9ff4fd1fdbd40d89885a95789fff495~mv2.jpeg" alt="teamdev360 partner logo" style="height:34px;border-radius:6px;" onerror="imgFallback(this,'teamdev360')">
+  </div>
+</div>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-media">
+      <img src="https://static.wixstatic.com/media/2f7214_45585dd1ab5542aabbb1e71abed661a8~mv2.jpg" alt="teamsoffshore team member" onerror="imgFallback(this,'teamsoffshore')">
+    </div>
+    <div>
+      <div class="about-founded"><span class="dot"></span> Established 2019</div>
+      <h2>More than a staffing provider — a trusted extension of your business</h2>
+      <p>We see staffing as more than resource. While you focus on leading your business, our team works behind the scenes on the day-to-day support that keeps everything running — so you get to grow smarter and faster, not just bigger.</p>
+      <p>Built on a people-first approach to outsourcing, we've grown across EMEA, the USA and APAC. Today, 200+ skilled professionals combine experience and genuine care to support businesses around the world.</p>
+      <a class="btn btn-outline-dark" href="#contact">Talk to our team</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three ways we help you scale</h2>
+      <p>Whichever stage you're at, we build the offshore capability around your workflows — not the other way round.</p>
+    </div>
+
+    <div class="service-row">
+      <div class="service-media">
+        <img src="https://static.wixstatic.com/media/2f7214_0efc1d874a0743a5b3aecebf66e79300~mv2.jpg" alt="Virtual Assistant supporting daily operations" onerror="imgFallback(this,'Virtual Assistance')">
+      </div>
+      <div class="service-text">
+        <div class="service-num">Virtual Assistance</div>
+        <h3>Dedicated support for the work that keeps you moving</h3>
+        <p>We source, train and retain exceptional Virtual Assistants matched to your business — handling admin, calendar management, client relationships and reporting so your time goes where it matters most.</p>
+        <div class="service-tags">
+          <span>Appointment setting</span><span>Calendar management</span><span>Bookkeeping</span><span>Client relationships</span>
+        </div>
+        <a class="service-link" href="#contact">Build my VA team</a>
+      </div>
+    </div>
+
+    <div class="service-row reverse">
+      <div class="service-media">
+        <img src="https://static.wixstatic.com/media/2f7214_c3a51de106ed4ed6ba335a1f69ef65bb~mv2.jpg" alt="Offshore team collaborating in an office" onerror="imgFallback(this,'Offshore Teams')">
+      </div>
+      <div class="service-text">
+        <div class="service-num">Offshore Teams</div>
+        <h3>Scale headcount without scaling overhead</h3>
+        <p>Build a full offshore team designed around your structure — from a single specialist to a department-sized unit — with the management and infrastructure already in place.</p>
+        <div class="service-tags">
+          <span>Dedicated teams</span><span>Ongoing management</span><span>Flexible scaling</span><span>Quality oversight</span>
+        </div>
+        <a class="service-link" href="#contact">Scale my team</a>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-media">
+        <img src="https://static.wixstatic.com/media/2f7214_fdee7c1396d64a439eaf43037f2c5032~mv2.jpg" alt="Tech development professional at work" onerror="imgFallback(this,'Tech Dev')">
+      </div>
+      <div class="service-text">
+        <div class="service-num">Tech Dev</div>
+        <h3>Offshore development talent for your roadmap</h3>
+        <p>From technical support to full product builds, our Tech Dev specialists plug into your existing tools and processes, giving you senior capability without the senior overhead.</p>
+        <div class="service-tags">
+          <span>Product development</span><span>Technical support</span><span>Integrations</span><span>Ongoing delivery</span>
+        </div>
+        <a class="service-link" href="#contact">Discuss my project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS — 8-step recruitment (genuine sequence, numbering earned)
+     ============================================================ -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Our 8-step placement process</h2>
+      <p>Every placement — VA, team member or developer — goes through the same rigorous process before they ever meet you.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-step"><b>1</b><p>Understand your business objectives and operational needs</p></div>
+      <div class="process-step"><b>2</b><p>Identify the tasks and functions best suited to remote support</p></div>
+      <div class="process-step"><b>3</b><p>Define the ideal role profile, responsibilities and skill set</p></div>
+      <div class="process-step"><b>4</b><p>Engage our dedicated Talent Recruitment specialists</p></div>
+      <div class="process-step"><b>5</b><p>Screen and shortlist to present only the highest-calibre talent</p></div>
+      <div class="process-step"><b>6</b><p>Support you in selecting your ideal candidate</p></div>
+      <div class="process-step"><b>7</b><p>Deliver training and development where it's needed</p></div>
+      <div class="process-step"><b>8</b><p>Manage a seamless onboarding for both sides</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VALUES
+     ============================================================ -->
+<section class="values">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What guides how we work</h2>
+      <p>Six principles that show up in every placement, every conversation and every partnership we build.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-cell"><h3>Priority</h3><p>Your success is our priority, built on honest partnership, trust and shared growth.</p></div>
+      <div class="value-cell"><h3>Consistency</h3><p>We deliver consistent results through clear communication and dependable service.</p></div>
+      <div class="value-cell"><h3>Proactiveness</h3><p>We stay ahead of challenges with practical solutions that add real value.</p></div>
+      <div class="value-cell"><h3>Efficiency</h3><p>We empower businesses through smarter systems and more efficient operations.</p></div>
+      <div class="value-cell"><h3>Evolution</h3><p>We continuously improve, learn and adapt to meet evolving business needs.</p></div>
+      <div class="value-cell"><h3>Commitment</h3><p>We build meaningful partnerships through understanding, care and attention to detail.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY THE PHILIPPINES
+     ============================================================ -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="why-head">
+      <h2>Why the Philippines</h2>
+      <p>A deep, English-fluent talent pool and a culture built around genuine client care — it's why global businesses keep choosing to build here.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><b>Deep talent pool</b><p>Thousands of interviews and placements have taught us exactly where to find the right people for the right roles.</p></div>
+      <div class="why-item"><b>Timezone-friendly coverage</b><p>Flexible working hours mean your offshore team overlaps comfortably with UK, US or AU business hours.</p></div>
+      <div class="why-item"><b>Cost-effective scaling</b><p>Grow your capability without the cost structure of hiring the same roles locally.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BANNER
+     ============================================================ -->
+<div class="cta-banner">
+  <div class="wrap">
+    <div>
+      <h2>Ready to build your offshore team?</h2>
+      <p>Book a free 30-minute consultation — no obligation, just a clear next step.</p>
+    </div>
+    <a class="btn btn-outline-dark" style="background:var(--harbor);color:#fff;border-color:var(--harbor);" href="https://calendly.com/steve-murray2024" target="_blank" rel="noopener">Book your call</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <h2>Let's talk about your team</h2>
+      <p>Tell us a little about what you need and we'll come back with a clear, practical plan — usually within one business day.</p>
+
+      <div class="contact-detail">
+        <div class="ic">@</div>
+        <div><b>Email</b><a href="mailto:hello@teamsoffshore.com">hello@teamsoffshore.com</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="ic">☎</div>
+        <div>
+          <b>Phone</b>
+          <span>UK: +44 1280 505860 &nbsp;·&nbsp; US: +1 209 215 5272 &nbsp;·&nbsp; AU: +61 2 7247 5563</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="ic">📍</div>
+        <div><b>Office</b><span>Unit 3FB, Romercial Building, Angeles City, Philippines 2009</span></div>
+      </div>
+
+      <div class="map-frame">
+        <iframe title="teamsoffshore office location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Angeles%20City%2C%20Philippines&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contactForm" novalidate>
+      <div id="formSuccess" role="status">Thanks — your message has been received. We'll be in touch within one business day.</div>
+      <div class="form-row">
+        <div class="field">
+          <label for="cf-name">Full name</label>
+          <input type="text" id="cf-name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="cf-email">Work email</label>
+          <input type="email" id="cf-email" name="email" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="cf-company">Company</label>
+          <input type="text" id="cf-company" name="company" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="cf-service">Service of interest</label>
+          <select id="cf-service" name="service">
+            <option>Virtual Assistance</option>
+            <option>Offshore Teams</option>
+            <option>Tech Dev</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="cf-message">How can we help?</label>
+        <textarea id="cf-message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Send message</button>
+      <p class="form-note">By submitting, you agree to be contacted by teamsoffshore about your enquiry.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="footer-brand">
+          <img src="https://static.wixstatic.com/media/2f7214_323d9d8d6c2d468e805da786f75d517f~mv2.png" alt="teamsoffshore logo" onerror="imgFallback(this,'teamsoffshore')">
+        </a>
+        <p style="max-width:32ch;color:#9FB6B3;font-size:14.5px;">Your global partner in offshore staffing — Virtual Assistants, offshore teams and Tech Dev, built in the Philippines.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#why">Why the Philippines</a></li>
+          <li><a href="#process">Our process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Virtual Assistance</a></li>
+          <li><a href="#services">Offshore Teams</a></li>
+          <li><a href="#services">Tech Dev</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:hello@teamsoffshore.com">hello@teamsoffshore.com</a></li>
+          <li><a href="tel:+441280505860">UK: +44 1280 505860</a></li>
+          <li><a href="tel:+12092155272">US: +1 209 215 5272</a></li>
+          <li><a href="tel:+61272475563">AU: +61 2 7247 5563</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> teamsoffshore. All rights reserved.</span>
+      <span><a href="#">Terms &amp; Conditions</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+  // Sticky header shadow on scroll
+  const header = document.getElementById('siteHeader');
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+    backToTop.classList.toggle('show', window.scrollY > 500);
+  });
+
+  // Mobile menu toggle
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const primaryNav = document.getElementById('primaryNav');
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = primaryNav.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  });
+  primaryNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      primaryNav.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Active nav highlight on scroll
+  const sections = ['top','about','services','process','why','contact'].map(id => document.getElementById(id)).filter(Boolean);
+  const navLinks = Array.from(primaryNav.querySelectorAll('a'));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navLinks.forEach(l => l.classList.remove('active'));
+        const match = navLinks.find(l => l.getAttribute('href') === '#' + entry.target.id);
+        if(match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-50% 0px -45% 0px' });
+  sections.forEach(sec => observer.observe(sec));
+
+  // Back to top action
+  backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Contact form — client-side handling (wire to CMS/back end on implementation)
+  const form = document.getElementById('contactForm');
+  const successBox = document.getElementById('formSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+    successBox.style.display = 'block';
+    form.reset();
+    successBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
